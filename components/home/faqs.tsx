@@ -16,7 +16,7 @@ export const FaqSection = () => {
         "You receive your rewards in ETH instantly once someone you refer makes a transaction",
     },
     {
-      question: "How do I get use Referral Code?",
+      question: "How do I use Referral Code from my friend?",
       answer: "You can use it while signing up on the platform.",
     },
   ];

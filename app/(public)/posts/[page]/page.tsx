@@ -44,7 +44,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
   return (
     <Suspense
       fallback={
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full z-5 mt-48 max-w-[1200px] mx-auto p-8 ">
           {Array.from({ length: 12 }).map((_, idx) => {
             return (
               <span
