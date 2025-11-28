@@ -5,6 +5,8 @@
   --foreground: #ffffff;
   --primary: #ffc800;
   --secondary: #feecaafe;
+  --description: #cfcfcfb2;
+  --custom-blue: #010124;
 }
 
 @theme inline {
@@ -12,6 +14,8 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
+  --color-custom-blue: var(--custom-blue);
+  --color-description: var(--description);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -22,12 +26,15 @@
     --foreground: #ededed;
   }
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  @apply flex flex-col items-center w-screen h-screen overflow-x-hidden
+  @apply flex flex-col items-center w-screen overflow-x-hidden;
 }
 
 @layer utilities {

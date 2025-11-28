@@ -6,6 +6,13 @@ const images = {
   bgGradient2: "/images/bg-gradient-2.png",
   bgCircles: "/images/bg-circles.png",
   bgMoon: "/images/bg-moon.png",
+  uniswapLogo: "/images/uniswap-logo.png",
 };
 
-export { images };
+const icons = {
+  reddit: "/icons/reddit.png",
+  telegram: "/icons/telegram.png",
+  twitter: "/icons/twitter.png",
+};
+
+export { images,icons };

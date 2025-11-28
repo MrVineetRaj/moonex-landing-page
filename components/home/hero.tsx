@@ -4,8 +4,8 @@ import React from "react";
 
 export const HeroSection = () => {
   return (
-    <section className="h-[90%] min-h-164 flex justify-center w-full   overflow-hidden relative">
-      <div className="w-full max-w-[1400px] flex flex-col gap-8 items-start justify-center px-4">
+    <section className="h-[90svh] min-h-164 flex justify-center w-full   overflow-hidden relative">
+      <div className="w-full max-w-[1400px] flex flex-col gap-8 items-start justify-center px-4 sm:px-8 md:px-16">
         <span className="flex flex-col gap-2">
           <h1 className="text-6xl font-bold">
             Trusted Multi-Chain <br />
@@ -17,7 +17,7 @@ export const HeroSection = () => {
         </span>
         <span className="flex items-center gap-2">
           <button className="btn cta-btn text-sm">Connect Wallet</button>
-          <button className="btn border-2 rounded-4xl text-primary border-primary font-semibold text-sm">
+          <button className="btn border-2 rounded-4xl text-primary border-primary font-semibold text-sm hover:text-background hover:bg-primary hover:border-primary">
             Trade Crypto
           </button>
         </span>

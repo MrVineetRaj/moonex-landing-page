@@ -1,21 +1,32 @@
 "use client";
 import { images } from "@/lib/assets";
+import { NAV_MENU } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export const Navbar = () => {
   const pathname = usePathname();
-  const NAV_MENU = [
-    { label: "Home", href: "/" },
-    { label: "About Us", href: "/about-us" },
-    { label: "Roadmap", href: "/roadmap" },
-    { label: "FAQs", href: "/faqs" },
-    { label: "Contact Us", href: "/contact-us" },
-  ];
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 w-screen flex items-center justify-between px-8 py-2 bg-transparent z-100">
+    <nav
+      className={cn(
+        "fixed top-0 left-0 w-screen flex items-center justify-between px-8 py-6 z-50",
+        isScrolled && "backdrop-blur-md"
+      )}
+    >
       <span className="flex gap-12 items-center">
         <Image
           src={images.logo}
@@ -39,9 +50,7 @@ export const Navbar = () => {
         })}
       </span>
       <span>
-        <button className="btn cta-btn text-sm">
-          Connect Wallet
-        </button>
+        <button className="btn cta-btn text-sm">Connect Wallet</button>
       </span>
     </nav>
   );
