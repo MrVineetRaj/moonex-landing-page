@@ -6,7 +6,7 @@ import { CheckIcon, XIcon } from "lucide-react";
 
 export const ComparisonSection = () => {
   return (
-    <section className="flex justify-center w-full   overflow-hidden relative">
+    <section className="flex justify-center w-full   overflow-hidden relative" id="#about-us">
       <div className="w-full max-w-[1600px] flex flex-col gap-8 items-start px-4 sm:px-8 md:px-16">
         <h1 className="text-3xl md:text-5xl font-semibold px-2 sm:px-4 md:px-10">
           Why <span className="text-primary">MoonEX</span>?
