@@ -17,9 +17,8 @@ const PostPage = ({ posts, error, page, search }: Props) => {
   const [displayPosts, setDisplayPosts] = useState<TPost[]>(posts);
   const router = useRouter();
 
-
   return (
-    <main className="w-full min-h-screen flex items-center flex-col">
+    <main className="w-full min-h-screen flex items-center flex-col my-4">
       <div className="w-full max-w-[1200px] mt-20 p-8 ">
         <PostFilter
           setUpdatedPosts={setDisplayPosts}

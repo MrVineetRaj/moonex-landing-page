@@ -11,7 +11,7 @@ const Page = async ({ searchParams }: PageProps) => {
   let posts: TPost[] = [];
   let search: string = "";
   try {
-    const baseUrl = process.env.VERCEL_API_URL || "http://localhost:3000";
+    const baseUrl = process.env.API_URL ;
     // const searchParams = searchParams;
     const params = await searchParams;
     search = params["search"] || "";
