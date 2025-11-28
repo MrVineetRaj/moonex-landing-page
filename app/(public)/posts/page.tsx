@@ -34,7 +34,20 @@ const Page = async ({ searchParams }: PageProps) => {
   }
 
   return (
-    <Suspense fallback={<p>Loading post</p>}>
+    <Suspense
+      fallback={
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          {Array.from({ length: 12 }).map((_, idx) => {
+            return (
+              <span
+                className="min-h-64 w-full bg-description/50 animate-pulse col-span-1 rounded-md"
+                key={idx}
+              ></span>
+            );
+          })}
+        </div>
+      }
+    >
       <PostPage posts={posts} error={error} search={search} page={1} />
     </Suspense>
   );

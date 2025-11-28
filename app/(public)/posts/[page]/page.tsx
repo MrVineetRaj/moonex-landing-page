@@ -1,7 +1,7 @@
 import PostPage from "@/components/post";
 import { TPost } from "@/lib/types";
 import axios, { AxiosError } from "axios";
-import React from "react";
+import React, { Suspense } from "react";
 
 interface PageProps {
   params: Promise<{ page: string }>;
@@ -41,12 +41,27 @@ const Page = async ({ params, searchParams }: PageProps) => {
   }
 
   return (
-    <PostPage
-      posts={posts}
-      error={error}
-      page={parseInt(page)}
-      search={search}
-    />
+    <Suspense
+      fallback={
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+          {Array.from({ length: 12 }).map((_, idx) => {
+            return (
+              <span
+                className="min-h-64 w-full bg-description/50 animate-pulse col-span-1 rounded-md"
+                key={idx}
+              ></span>
+            );
+          })}
+        </div>
+      }
+    >
+      <PostPage
+        posts={posts}
+        error={error}
+        page={parseInt(page)}
+        search={search}
+      />
+    </Suspense>
   );
 };
 
