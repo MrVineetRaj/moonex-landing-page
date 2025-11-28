@@ -5,13 +5,20 @@ export async function GET(req: NextRequest) {
   try {
     const searchParams = req.nextUrl.searchParams;
     const search = searchParams.get("search") || "";
+    const sortBy = searchParams.get("sortBy") || "";
     const page = (searchParams.get("page") as any) || 1;
 
     const limit = 12;
 
-    const url = `https://dummyjson.com/posts/search?q=${search}&limit=${limit}&skip=${
+    let url = `https://dummyjson.com/posts/search?q=${search}&limit=${limit}&skip=${
       (page - 1) * limit
     }`;
+
+    if (sortBy) {
+      url += `&sortBy=${sortBy.split("_")[0]}&order=${sortBy.split("_")[1]}`;
+    }
+
+    console.log(url)
 
     const { data: result } = await axios.get(url);
 

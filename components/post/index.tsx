@@ -10,14 +10,15 @@ interface Props {
   error: string;
   page: number;
   search: string;
+  sortBy: string;
 }
-const PostPage = ({ posts, error, page, search }: Props) => {
+const PostPage = ({ posts, error, page, search, sortBy }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>(search);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [displayPosts, setDisplayPosts] = useState<TPost[]>(posts);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [displayError, setDisplayError] = useState<string>(error.trim());
   const router = useRouter();
+  const [selectedTag, setSelectedTag] = useState<string>(sortBy);
 
   return (
     <main className="w-full min-h-screen flex items-center flex-col my-4">
@@ -27,10 +28,10 @@ const PostPage = ({ posts, error, page, search }: Props) => {
           page={page}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          selectedTags={selectedTags}
-          setSelectedTags={setSelectedTags}
           setIsLoading={setIsLoading}
           setError={setDisplayError}
+          selectedTag={selectedTag}
+          setSelectedTag={setSelectedTag}
         />
         {displayError.trim() && (
           <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 mb-6">
@@ -67,25 +68,29 @@ const PostPage = ({ posts, error, page, search }: Props) => {
       </div>
       <span className="flex items-center justify-end mt-4 gap-2">
         <button
-          className="btn border text-primary hover:bg-primary hover:text-background hover:border-primary"
+          className="btn border text-primary hover:bg-primary hover:text-background hover:border-primary disabled:cursor-not-allowed disabled:opacity-30"
           onClick={() => {
             const query = searchQuery ? `?search=${searchQuery}` : "";
-            if (page == 1) return;
+            if (page == 1) {
+              return;
+            }
             if (page == 2) router.push(`/posts${query}`);
             else {
               router.push(`/posts/${page - 1}${query}`);
             }
           }}
+          disabled={page == 1}
         >
           Prev
         </button>
         <button
-          className="btn bg-primary text-background border border-primary"
+          className="btn bg-primary text-background border border-primary disabled:cursor-not-allowed disabled:opacity-30"
           onClick={() => {
             if (displayPosts.length < 12) return;
             const query = searchQuery ? `?search=${searchQuery}` : "";
             router.push(`/posts/${page + 1}${query}`);
           }}
+          disabled={displayPosts.length < 12}
         >
           Next
         </button>

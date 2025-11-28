@@ -10,15 +10,16 @@ const Page = async ({ searchParams }: PageProps) => {
   let error: string = "";
   let posts: TPost[] = [];
   let search: string = "";
+  let sortBy = "";
 
   try {
     const baseUrl = process.env.API_URL;
     // const searchParams = searchParams;
     const params = await searchParams;
     search = params["search"] || "";
-
+    sortBy = params["sortBy"] || "";
     const { data: result } = await axios.get(
-      `${baseUrl}/api/posts?page=1&search=${search}`
+      `${baseUrl}/api/posts?page=1&search=${search}&sortBy=${sortBy}`
     );
     posts = result.data;
     error = "";
@@ -48,7 +49,13 @@ const Page = async ({ searchParams }: PageProps) => {
         </div>
       }
     >
-      <PostPage posts={posts} error={error} search={search} page={1} />
+      <PostPage
+        posts={posts}
+        error={error}
+        search={search}
+        page={1}
+        sortBy={sortBy}
+      />
     </Suspense>
   );
 };
