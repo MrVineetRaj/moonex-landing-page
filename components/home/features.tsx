@@ -8,7 +8,7 @@ export const FeatureSection = () => {
         <h1 className="text-3xl lg:text-4xl font-bold text-center w-full">
           Our <span className="text-primary">Features</span>?
         </h1>
-        <div className="grid grid-cols-2 lg:grid-cols-4 justify-center  relative p-4 rounded-xl gap-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center  relative p-4 rounded-xl gap-4 w-full">
           {FEATURES.map(({ feature, description, icon: Icon }) => {
             return (
               <div
