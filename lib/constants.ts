@@ -8,8 +8,8 @@ const NAV_MENU = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about-us" },
   { label: "Posts", href: "/posts" },
-  { label: "FAQs", href: "#faqs" },
-  { label: "Contact Us", href: "#contact-us" },
+  { label: "FAQs", href: "/#faqs" },
+  { label: "Contact Us", href: "/#contact-us" },
 ];
 
 const COMPARISON = [

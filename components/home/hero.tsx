@@ -1,13 +1,12 @@
 import { images } from "@/lib/assets";
 import Image from "next/image";
-import React from "react";
 
 export const HeroSection = () => {
   return (
-    <section className="h-[90svh] min-h-164 flex justify-center w-full   overflow-hidden relative">
-      <div className="w-full max-w-[1400px] flex flex-col gap-8 items-start justify-center px-4 sm:px-8 md:px-16">
-        <span className="flex flex-col gap-2">
-          <h1 className="text-6xl font-bold">
+    <section className="h-screen min-h-164 flex justify-center w-full   overflow-hidden relative">
+      <div className="w-full max-w-[1600px] flex flex-col gap-8 items-start justify-center px-6 sm:px-12 md:px-26">
+        <span className="flex flex-col gap-2 px">
+          <h1 className="text-[64px] lg:text-[78px] font-bold">
             Trusted Multi-Chain <br />
             <span className="text-primary">DEX</span> Platform
           </h1>
@@ -33,13 +32,8 @@ export const HeroSection = () => {
           className="absolute w-full h-full top-0 left-0 -z-9"
         />
         {/* Layer 2 */}
-        <Image
-          src={images.bgGradient2}
-          width={1000}
-          height={1000}
-          alt="bg-circles"
-          className="absolute top-0 left-0 w-full h-full -z-8"
-        />
+        <span className="block w-48 h-72 bg-primary/80 blur-[150px] rounded-full  absolute right-28 bottom-[40%] -z-8" />{" "}
+        <span className="block w-48 h-72 bg-primary/80 blur-[150px] rounded-full  absolute left-28 top-[32] -z-8" />
         {/* Layer 3 */}
         <Image
           src={images.star1}
@@ -68,7 +62,7 @@ export const HeroSection = () => {
           width={1000}
           height={1000}
           alt="bg-circles"
-          className="absolute top-0 right-20 w-120 -z-6"
+          className="absolute top-0 right-20 w-120  md:w-[600px]  -z-6"
         />
       </div>
     </section>

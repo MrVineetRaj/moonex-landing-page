@@ -1,5 +1,5 @@
 import { NAV_MENU } from "@/lib/constants";
-import { icons } from "@/lib/assets";
+import { icons, images } from "@/lib/assets";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
@@ -11,9 +11,21 @@ export const Footer = () => {
     { href: "/", iconPath: icons.twitter },
   ];
   return (
-    <footer className="w-full h-52 bg-custom-blue  flex items-center justify-around" id="contact-us">
-      <span></span>
-      <span className="flex gap-8 text-sm font-semibold">
+    <footer
+      className="w-full h-52 bg-custom-blue  flex items-center justify-around"
+      id="contact-us"
+    >
+      <span className="flex flex-col items-center gap-2">
+        <Image
+          src={images.logo}
+          width={100}
+          height={100}
+          alt="logo"
+          className="w-12"
+        />
+        <span className=" text-primary font-semibold">Moonex</span>
+      </span>
+      <span className="flex flex-col gap-4 sm:flex-row md:gap-8 text-sm font-semibold">
         {NAV_MENU.map(({ label, href }) => {
           if (href == "/") return null;
           return (
@@ -24,10 +36,9 @@ export const Footer = () => {
         })}
       </span>
       <span className="flex items-center flex-col gap-2">
-
         <h2 className="font-bold">
           Contact <span className="text-primary">Us</span>
-        </h2>{" "}
+        </h2>
         <span className="flex gap-4 items-center">
           {CONTACT_OPTIONS.map(({ href, iconPath }) => {
             return (

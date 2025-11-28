@@ -28,7 +28,7 @@ const PostFilter = ({
 
   const fetchNewPosts = useCallback(async () => {
     const params = new URLSearchParams(searchParams);
-    console.log("here : ",{page,debouncedQuery})
+    console.log("here : ", { page, debouncedQuery });
     const { data: result } = await axios.get(
       `/api/posts?page=${page}&search=${debouncedQuery}`
     );
@@ -55,6 +55,7 @@ const PostFilter = ({
         className="bg-white p-2 px-4 rounded-2xl outline-2 focus:outline-primary text-background w-full max-w-84"
         onChange={(e) => setSearchQuery(e.target.value)}
         value={searchQuery}
+        placeholder="Search posts by title..."
       />
     </div>
   );
