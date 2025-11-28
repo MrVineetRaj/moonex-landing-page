@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Moonex
 
-## Getting Started
+> Checkout live site [Here](https://moonex.unknownbug.tech)
 
-First, run the development server:
+## TechStack
+
+- **NextJs** : Used NextJS as it follows serverless architecture which is sufficient for This assignment
+- **TailwindCSS** : used tailwindcss for the styling as it is easy to use over normal css
+- **DummyJSON** : For public API fetching posts data using it , used this as it provides comprehensive set of queries to perform on the dummy data
+- **Vercel** : For deployment of app
+
+## Setup Guid
+
+First of all clone this repo in your `machine` and open terminal in root of this project
+
+Configure `.env` file with
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+API_URL="http://localhost:8080" #URL on which you are running your app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### How to run `Locally`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run following commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm install
+or
+npm install
+```
 
-## Learn More
+and then
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm run dev
+or
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### How to build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Run following commands
 
-## Deploy on Vercel
+```bash
+pnpm install
+or
+npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+and then
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm run build
+or
+npm run build
+```
+
+## Known Trade-Offs and Future Improvements
+
+- Background gradients and patterns aren't clear and few are not positioned in pixel perfect manner
+- **Improvement** : In future can solve this by exporting these patterns and gradients from this `Figma` Design and use them properly
+- No Caching as DummyJSON was quite fast
+- Right now it does not supports sorting of `Posts` according to the `Reactions`
+- **Improvement** : In future might create a comprehensive algorithm to fetch all posts and then manually sort them according to reactions when required
+- Same goes for `sorting` According to the `post tags`
+- As of now testing is not done as it has only one main method to call and it's about fetching `Posts` from the `DummyJSON API`
+
+## Attributions
+
+- Used DummyJSON endpoint : [posts](https://dummyjson.com/posts/)
+- Icons for `Telegram`, `Twitter` and `Reddit` is downloaded from [Icons8](https://icons8.com/)

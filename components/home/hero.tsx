@@ -40,7 +40,7 @@ export const HeroSection = () => {
           width={1000}
           height={1000}
           alt="bg-circles"
-          className="absolute top-32 left-32 w-12 -z-7"
+          className="absolute top-48 left-32 w-12 -z-7"
         />{" "}
         <Image
           src={images.star2}
