@@ -29,9 +29,11 @@ const Page = async ({ params, searchParams }: PageProps) => {
     );
     posts = result.data;
     error = "";
-  } catch (error) {
-    if (error instanceof AxiosError || error instanceof Error) {
-      error = error.message || "Error is coming from PublicAPI";
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      error = err.response?.data.message || "Error is coming from PublicAPI";
+    } else if (err instanceof Error) {
+      error = err.message || "Error is coming from PublicAPI";
     } else {
       error = "Error loading posts";
     }

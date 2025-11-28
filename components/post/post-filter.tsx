@@ -2,7 +2,7 @@
 import { useDebounce } from "@/hooks/use-debounce";
 import { TPost } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { SlidersHorizontalIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
@@ -14,28 +14,49 @@ interface Props {
   setSelectedTags: (tags: string[]) => void;
   setSearchQuery: (query: string) => void;
   page: number;
+  setIsLoading: (val: boolean) => void;
+  setError: (val: string) => void;
 }
 const PostFilter = ({
   setUpdatedPosts,
   searchQuery,
   setSearchQuery,
   page,
+  setIsLoading,
+  setError,
 }: Props) => {
   const debouncedQuery = useDebounce(`${searchQuery}`, 500);
   const searchParams = useSearchParams();
 
-  const AVAILABLE_TAGS = ["id", "title", "description", "views"];
-
   const fetchNewPosts = useCallback(async () => {
     const params = new URLSearchParams(searchParams);
-    
-    const { data: result } = await axios.get(
-      `/api/posts?page=${page}&search=${debouncedQuery}`
-    );
-    if (debouncedQuery) {
-      params.set("search", debouncedQuery);
+    let error = "";
 
+    setIsLoading(true);
+
+    try {
+      const { data: result } = await axios.get(
+        `/api/posts?page=${page}&search=${debouncedQuery}`
+      );
       setUpdatedPosts(result.data);
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        error = err.response?.data.message || "Error is coming from PublicAPI";
+      } else if (err instanceof Error) {
+        error = err.message || "Error is coming from PublicAPI";
+      } else {
+        error = "Error loading posts";
+      }
+      setUpdatedPosts([]);
+    } finally {
+      setError(error);
+      setIsLoading(false);
+      setSearchQuery(debouncedQuery);
+      if (debouncedQuery) {
+        params.set("search", debouncedQuery);
+      } else {
+        params.delete("search");
+      }
       window.history.replaceState(
         {},
         "",
@@ -55,7 +76,7 @@ const PostFilter = ({
         className="bg-white p-2 px-4 rounded-2xl outline-2 focus:outline-primary text-background w-full max-w-84"
         onChange={(e) => setSearchQuery(e.target.value)}
         value={searchQuery}
-        placeholder="Search posts by title..."
+        placeholder="Search posts..."
       />
     </div>
   );

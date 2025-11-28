@@ -8,12 +8,23 @@ export async function GET(req: NextRequest) {
     const page = (searchParams.get("page") as any) || 1;
 
     const limit = 12;
-    
+
     const url = `https://dummyjson.com/posts/search?q=${search}&limit=${limit}&skip=${
       (page - 1) * limit
     }`;
-    
+
     const { data: result } = await axios.get(url);
+
+    if (result.posts.length == 0) {
+      return NextResponse.json(
+        {
+          message: `Posts not found for '${search}' on page no, ${page}`,
+          statusCode: 404,
+          success: true,
+        },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json(
       {
