@@ -15,16 +15,14 @@ const Page = async ({ params, searchParams }: PageProps) => {
   let page: string = "1";
   let search: string = "";
   try {
-    const baseUrl = process.env.VERCEL_URL || "http://localhost:3000";
+    const baseUrl = process.env.VERCEL_API_URL || "http://localhost:3000";
 
     // Await both params and searchParams
     const routeParams = await params;
     const queryParams = await searchParams;
 
-    page = routeParams.page  || "1";
-    search = queryParams.search as string || "";
-
-    console.log({ page, search });
+    page = routeParams.page || "1";
+    search = (queryParams.search as string) || "";
 
     const { data: result } = await axios.get(
       `${baseUrl}/api/posts?page=${page}&search=${search}`

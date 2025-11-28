@@ -28,7 +28,7 @@ const PostFilter = ({
 
   const fetchNewPosts = useCallback(async () => {
     const params = new URLSearchParams(searchParams);
-    console.log("here : ", { page, debouncedQuery });
+    
     const { data: result } = await axios.get(
       `/api/posts?page=${page}&search=${debouncedQuery}`
     );

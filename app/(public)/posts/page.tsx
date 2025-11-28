@@ -4,19 +4,21 @@ import axios, { AxiosError } from "axios";
 import React from "react";
 
 interface PageProps {
-  searchParams: Promise<{ [key: string]: string  | undefined }>;
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }
 const Page = async ({ searchParams }: PageProps) => {
   let error: string = "";
   let posts: TPost[] = [];
   let search: string = "";
   try {
-    const baseUrl = process.env.VERCEL_URL || "http://localhost:3000";
+    const baseUrl = process.env.VERCEL_API_URL || "http://localhost:3000";
     // const searchParams = searchParams;
     const params = await searchParams;
     search = params["search"] || "";
-    console.log({ search });
-    const { data: result } = await axios.get(`${baseUrl}/api/posts?page=1&search=${search}`);
+
+    const { data: result } = await axios.get(
+      `${baseUrl}/api/posts?page=1&search=${search}`
+    );
     posts = result.data;
     error = "";
   } catch (error) {
@@ -28,7 +30,7 @@ const Page = async ({ searchParams }: PageProps) => {
     posts = [];
   }
 
-  return <PostPage posts={posts} error={error} search={search} page={1}/>;
+  return <PostPage posts={posts} error={error} search={search} page={1} />;
 };
 
 export default Page;

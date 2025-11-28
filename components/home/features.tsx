@@ -3,7 +3,7 @@ import React from "react";
 
 export const FeatureSection = () => {
   return (
-    <section className="flex justify-center w-full  overflow-hidden relative">
+    <section className="flex justify-center w-full mt-16 overflow-hidden relative">
       <div className="w-full max-w-[1600px] flex flex-col gap-8 items-start px-4 sm:px-8 md:px-16">
         <h1 className="text-3xl lg:text-4xl font-bold text-center w-full">
           Our <span className="text-primary">Features</span>?

@@ -8,11 +8,11 @@ export async function GET(req: NextRequest) {
     const page = (searchParams.get("page") as any) || 1;
 
     const limit = 12;
-    console.log(page);
+    
     const url = `https://dummyjson.com/posts/search?q=${search}&limit=${limit}&skip=${
       (page - 1) * limit
     }`;
-    console.log(url);
+    
     const { data: result } = await axios.get(url);
 
     return NextResponse.json(
